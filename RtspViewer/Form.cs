@@ -35,7 +35,7 @@ namespace RtspViewer
         private void SettingForm_ConfigurationUpdated(object sender, StreamConfiguration config)
         {
             _config = config;
-            //videoView.InitialiseStream(_config);
+            InitialiseStream(_config);
             StreamConfiguration.Save(ConfigurationFilename, _config);
 
             if (string.IsNullOrWhiteSpace(_config.Address))
