@@ -23,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DeviceId, Version=6.8.0.0, Culture=neutral, PublicKeyToken=f755c371b5c59c52, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeviceId.6.8.0\lib\net40\DeviceId.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RtspClientSharp, Version=1.3.3.0, Culture=neutral, PublicKeyToken=af963665c791e92e, processorArchitecture=MSIL">
       <HintPath>..\packages\RtspClientSharp.1.3.3\lib\netstandard2.0\RtspClientSharp.dll</HintPath>
     </Reference>
@@ -50,14 +57,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ConnectionType.cs" />
+    <Compile Include="Configuration\StreamConfiguration.cs" />
+    <Compile Include="Extensions\BitmapExtensions.cs" />
+    <Compile Include="Extensions\CryptographyExtensions.cs" />
     <Compile Include="Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form.Designer.cs">
       <DependentUpon>Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="IAudioSource.cs" />
+    <Compile Include="IVideoSource.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RawFramesDecoding\AudioConversionParameters.cs" />
+    <Compile Include="RawFramesDecoding\DecodedFrames\AudioFrameFormat.cs" />
+    <Compile Include="RawFramesDecoding\DecodedFrames\DecodedAudioFrame.cs" />
+    <Compile Include="RawFramesDecoding\DecodedFrames\DecodedVideoFrame.cs" />
+    <Compile Include="RawFramesDecoding\DecodedFrames\IDecodedAudioFrame.cs" />
+    <Compile Include="RawFramesDecoding\DecodedFrames\IDecodedVideoFrame.cs" />
+    <Compile Include="RawFramesDecoding\DecodedVideoFrameParameters.cs" />
+    <Compile Include="RawFramesDecoding\DecoderException.cs" />
+    <Compile Include="RawFramesDecoding\FFmpeg\FFmpegAudioCodecId.cs" />
+    <Compile Include="RawFramesDecoding\FFmpeg\FFmpegAudioDecoder.cs" />
+    <Compile Include="RawFramesDecoding\FFmpeg\FFmpegAudioPInvoke.cs" />
+    <Compile Include="RawFramesDecoding\FFmpeg\FFmpegDecodedVideoScaler.cs" />
+    <Compile Include="RawFramesDecoding\FFmpeg\FFmpegPixelFormat.cs" />
+    <Compile Include="RawFramesDecoding\FFmpeg\FFmpegScalingQuality.cs" />
+    <Compile Include="RawFramesDecoding\FFmpeg\FFmpegVideoCodecId.cs" />
+    <Compile Include="RawFramesDecoding\FFmpeg\FFmpegVideoDecoder.cs" />
+    <Compile Include="RawFramesDecoding\FFmpeg\FFmpegVideoPInvoke.cs" />
+    <Compile Include="RawFramesDecoding\PixelFormats.cs" />
+    <Compile Include="RawFramesDecoding\ScalingPolicy.cs" />
+    <Compile Include="RawFramesDecoding\ScalingQuality.cs" />
+    <Compile Include="RawFramesDecoding\TransformParameters.cs" />
+    <Compile Include="RawFramesReceiving\IRawFramesSource.cs" />
+    <Compile Include="RawFramesReceiving\RawFrameSource.cs" />
+    <Compile Include="RealtimeAudioSource.cs" />
+    <Compile Include="RealtimeVideoSource.cs" />
+    <Compile Include="SettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form.resx">
       <DependentUpon>Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -65,6 +109,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForm.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -103,5 +150,6 @@
   <ItemGroup>
     <None Include="Resources\play.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
