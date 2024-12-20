@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
@@ -43,22 +42,11 @@
             this.checkIPAddressCamera = new System.Windows.Forms.CheckBox();
             this.textIPAddress = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.streamConfigurationBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.txtPassword);
-            this.panel1.Controls.Add(this.txtUsername);
-            this.panel1.Controls.Add(this.lblPassword);
-            this.panel1.Controls.Add(this.lblUsernane);
-            this.panel1.Location = new System.Drawing.Point(12, 11);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(282, 77);
-            this.panel1.TabIndex = 0;
             // 
             // txtPassword
             // 
@@ -127,7 +115,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnCancel.Location = new System.Drawing.Point(12, 133);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancel.Name = "btnCancel";
@@ -139,7 +127,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnSave.Location = new System.Drawing.Point(417, 133);
             this.btnSave.Margin = new System.Windows.Forms.Padding(5);
             this.btnSave.Name = "btnSave";
@@ -207,6 +195,7 @@
             // 
             // panel3
             // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.checkIPAddressCamera);
             this.panel3.Controls.Add(this.textIPAddress);
             this.panel3.Location = new System.Drawing.Point(304, 11);
@@ -214,6 +203,19 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(253, 77);
             this.panel3.TabIndex = 13;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.txtPassword);
+            this.panel1.Controls.Add(this.txtUsername);
+            this.panel1.Controls.Add(this.lblPassword);
+            this.panel1.Controls.Add(this.lblUsernane);
+            this.panel1.Location = new System.Drawing.Point(12, 11);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(282, 77);
+            this.panel1.TabIndex = 0;
             // 
             // ConfigForm
             // 
@@ -241,19 +243,17 @@
             this.Text = "Stream Settings";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.ConfigForm_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.streamConfigurationBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtPassword;
@@ -267,5 +267,6 @@
         private System.Windows.Forms.CheckBox checkIPAddressCamera;
         private System.Windows.Forms.TextBox textIPAddress;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel1;
     }
 }

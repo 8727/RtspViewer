@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using RtspViewer.Configuration;
@@ -21,10 +20,11 @@ namespace RtspViewer.Forms.Windows
         {
             if (config != null)
             {
-                txtAddress.Text = config.Address;
                 textIPAddress.Text = config.IPAddress;
+                txtAddress.Text = config.Address;
                 txtUsername.Text = config.Username;
                 txtPassword.Text = config.Password;
+                checkIPAddressCamera.Checked = config.StatusIP;
             }
         }
 
@@ -63,15 +63,17 @@ namespace RtspViewer.Forms.Windows
             if (checkIPAddressCamera.Checked)
             {
                 txtAddress.Enabled = false;
-            }
-
-            if (textIPAddress.Text != "")
-            {
-                textIPAddressTotxtAddress();
+                if (textIPAddress.Text != "")
+                {
+                    textIPAddressTotxtAddress();
+                }
             }
             else
             {
-                txtAddressTotextIPAddress();
+                if (txtAddress.Text != "")
+                {
+                    txtAddressTotextIPAddress();
+                }
             }
         }
 
@@ -132,10 +134,11 @@ namespace RtspViewer.Forms.Windows
             lblError.Visible = false;
             ConfigurationUpdated(this, new StreamConfiguration
             {
-                Address = streamAddress,
                 IPAddress = textIPAddress.Text,
+                Address = streamAddress,
                 Username = txtUsername.Text,
                 Password = txtPassword.Text,
+                StatusIP = checkIPAddressCamera.Checked,
             });
 
             Close();
