@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Threading;
-using NAudio.Wave;
 using RtspViewer.Configuration;
 using RtspViewer.RawFramesDecoding;
 using RtspViewer.RawFramesDecoding.DecodedFrames;
@@ -20,8 +19,6 @@ namespace RtspViewer.Forms.Controls
         private Bitmap _bitmap;
         private TransformParameters _transformParameters;
         private DateTime _startTime;
-        private BufferedWaveProvider _player;
-        private WaveOut _waveOut;
 
         public string ConnectionStatus { get; private set; } = "Disconnected";
 
@@ -126,30 +123,7 @@ namespace RtspViewer.Forms.Controls
 
         private void AudioSource_FrameReceived(object sender, IDecodedAudioFrame frame)
         {
-            if (_player == null)
-            {
-                _player = new BufferedWaveProvider(
-                    new WaveFormat(
-                        frame.Format.SampleRate,
-                        frame.Format.BitPerSample,
-                        frame.Format.Channels));
-                _player.BufferLength = 2560 * 16;
-                _player.DiscardOnBufferOverflow = true;
 
-                _waveOut = new WaveOut();
-                _waveOut.Init(_player);
-                _waveOut.Volume = 1.0f;
-            }
-
-            _player.AddSamples(
-                frame.DecodedBytes.Array,
-                frame.DecodedBytes.Offset,
-                frame.DecodedBytes.Count);
-
-            if (_waveOut.PlaybackState != PlaybackState.Playing && Started)
-            { 
-                _waveOut.Play();
-            }
         }
 
         private void VideoSource_FrameReceived(object sender, IDecodedVideoFrame frame)
